@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product-list.css' %}">
+</head>
+<body>
+<ul>
+    <li><a href="{% url 'cart:cart_view' %}">Shopping Cart</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+    <li><a href="{% url 'accounts:register' %}">Register</a></li>
+    {% endif %}
+</ul>
+
+
+{% for product in products %}
+<div>
+    <h3>{{ product.name }}</h3>
+    <p>Price: {{ product.price }}</p>
+    <img src="{{ media_url }}{{ product.image.url }}" alt="{{ product.name }}">
+    <form method="POST" action="{% url 'cart:add_to_cart' %}">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <button type="submit">Add to Cart</button>
+    </form>
+</div>
+{% endfor %}
+
+
+</body>
+</html>

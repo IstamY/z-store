@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order confirmation</title>
+</head>
+<body>
+
+  <h1>Order Confirmation</h1>
+  <p>Thank you for your order! Your order has been confirmed.</p>
+  <p>Order Details:</p>
+  <ul>
+    <li>Order ID: {{ order.id }}</li>
+    <li>Name: {{ order.name }}</li>
+    <li>Phone Number: {{ order.phone_number }}</li>
+    <li>Address: {{ order.address }}</li>
+    <li>Payment Method: {{ order.payment_method }}</li>
+  </ul>
+
+</body>
+</html>
